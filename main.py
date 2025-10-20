@@ -178,6 +178,7 @@ class GoogleMapsAnalyzer:
         
         # Palabras comunes a excluir (stopwords en español)
         stopwords = set([
+            # Spanish
             'el', 'la', 'de', 'que', 'y', 'a', 'en', 'un', 'ser', 'se', 'no',
             'haber', 'por', 'con', 'su', 'para', 'como', 'estar', 'tener',
             'le', 'lo', 'todo', 'pero', 'más', 'hacer', 'o', 'poder', 'decir',
@@ -190,9 +191,23 @@ class GoogleMapsAnalyzer:
             'tanto', 'hombre', 'parecer', 'nuestro', 'tan', 'donde', 'ahora',
             'parte', 'después', 'vida', 'quedar', 'siempre', 'creer', 'hablar',
             'llevar', 'dejar', 'nada', 'cada', 'seguir', 'menos', 'nuevo', 'encontrar',
-            'algo', 'solo', 'decir', 'entonces', 'fue', 'the', 'and', 'is', 'it',
-            'to', 'of', 'was', 'for', 'on', 'are', 'with', 'as', 'I', 'his', 'that',
-            'he', 'this', 'at', 'but', 'from', 'had', 'they', 'which', 'she', 'or',
+            'algo', 'solo', 'fue',
+            
+            # English (existing + new)
+            'the', 'and', 'is', 'it', 'to', 'of', 'was', 'for', 'on', 'are', 'with',
+            'as', 'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves',
+            'you', 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself',
+            'she', 'her', 'hers', 'herself', 'it', 'its', 'itself', 'they', 'them', 'their',
+            'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 'that', 'these',
+            'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has',
+            'had', 'having', 'do', 'does', 'did', "didn't", "don't", 'doing', 'a', 'an', 'the', 'and', 
+            'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of', 'at', 'by', 'for', 'with',
+            'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after',
+            'above', 'below', 'to', 'from', 'up', 'down', 'in', 'out', 'on', 'off', 'over',
+            'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where',
+            'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other',
+            'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too',
+            'very', 's', 't', 'can', 'will', 'just', 'don', 'should', 'now'
         ])
         
         # Crear wordcloud
@@ -265,11 +280,8 @@ class GoogleMapsAnalyzer:
     
     def save_data(self, filename='datos_negocios.csv'):
         """Guarda los datos en un archivo CSV"""
-        # Crear copia sin la columna reviews (es una lista)
-        df_export = self.df.drop(columns=['reviews'])
-        df_export.to_csv(filename, index=False, encoding='utf-8-sig')
+        self.df.to_csv(filename, index=False, encoding='utf-8-sig')
         print(f"\n💾 Datos guardados: {filename}")
-
 
 def main():
     # Cargar API key desde .env
