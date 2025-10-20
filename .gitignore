@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# Archivos generados por el análisis
+*.html
+*.csv
+*.png
+datos_negocios.csv
+mapa_*.html
+wordcloud_*.png
+analisis_*.png
